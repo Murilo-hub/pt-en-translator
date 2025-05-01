@@ -1,34 +1,53 @@
+# Importa o Gradio (para interface web) e a classe Translator (criada)
 import gradio as gr
 from app.translator import Translator
 
+# Instancia a classe Translator
 translator = Translator()
 
 def translate_interface(text, direction):
     return translator.translate(text, direction)
 
-def clear_fields():
+# Função de limpeza dos campos de texto
+def limpar():
     return "", ""
 
 def launch_interface():
-    with gr.Blocks() as app:
-        gr.Markdown("# 🌍 Tradutor EN ↔ PT")
-        gr.Markdown("Escolha a direção da tradução, insira o texto e clique em traduzir!")
+    # Cria a interface gráfica com Gradio usando Blocks (layout personalizado)
+with gr.Blocks() as app:
+    # Título e descrição
+    gr.Markdown("# 🌍 Tradutor EN ↔ PT")
+    gr.Markdown("Escolha a direção, digite seu texto e veja a tradução!")
 
-        with gr.Row():
-            input_text = gr.Textbox(label="Texto original", lines=6, placeholder="Digite aqui...")
-            output_text = gr.Textbox(label="Tradução", lines=6)
+    # Linha com caixas de texto lado a lado
+    with gr.Row():
+        entrada = gr.Textbox(label="Texto original", lines=6, placeholder="Digite aqui...")
+        saida = gr.Textbox(label="Tradução", lines=6)
 
-        direction = gr.Radio(
-            choices=["Inglês → Português", "Português → Inglês"],
-            label="Direção da tradução",
-            value="Inglês → Português"
-        )
+    # Escolha da direção da tradução
+    direcao = gr.Radio(
+        choices=["Inglês → Português", "Português → Inglês"],
+        label="Direção da tradução",
+        value="Inglês → Português"  # valor padrão
+    )
 
-        with gr.Row():
-            translate_btn = gr.Button("🔁 Traduzir")
-            clear_btn = gr.Button("🧹 Limpar")
+    # Linha com botões
+    with gr.Row():
+        btn_traduzir = gr.Button("🔁 Traduzir")
+        btn_limpar = gr.Button("🧹 Limpar")
 
-        translate_btn.click(fn=translate_interface, inputs=[input_text, direction], outputs=output_text)
-        clear_btn.click(fn=clear_fields, outputs=[input_text, output_text])
+    # Conecta o botão de traduzir à função translate da classe Translator
+    btn_traduzir.click(
+        fn=translator.translate,    # Função a ser chamada
+        inputs=[entrada, direcao], # Entradas vindas do usuário
+        outputs=saida               # Saída para exibir a tradução
+    )
 
-    app.launch(share=True)
+    # Conecta o botão limpar à função limpar()
+    btn_limpar.click(
+        fn=limpar,                 # Função de limpar
+        outputs=[entrada, saida]   # Limpa ambos os campos
+    )
+
+# Executa a aplicação com Gradio e permite compartilhamento público
+app.launch(share=True)
