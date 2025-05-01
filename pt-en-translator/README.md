@@ -21,7 +21,7 @@ venv\Scripts\activate     # Windows
 
 pip install -r requirements.txt
 python interface.py
-
+```
 ## ✅ Funcionalidades
 
 Tradução de Inglês para Português com MarianMT.
