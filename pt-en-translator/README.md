@@ -5,7 +5,7 @@ Este projeto é um tradutor simples entre inglês e português utilizando modelo
 ## 🚀 Como usar
 
 ```bash
-git clone https://github.com/Murilo-hub/pt-en-translator.git
+git clone https://github.com/seu-github/pt-en-translator.git
 cd pt-en-translator
 pip install -r requirements.txt
 python main.py
