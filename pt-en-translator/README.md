@@ -36,7 +36,9 @@ Botão para limpar os campos de texto.
 
 Também funciona no Google Colab! Basta copiar os arquivos interface.py e translator.py e executar após instalar os pacotes:
 
+```bash
 !pip install transformers gradio torch
+```
 
 ## 📃 Licença
 Este projeto está licenciado sob a MIT License.
