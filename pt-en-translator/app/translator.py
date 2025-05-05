@@ -8,7 +8,7 @@ class Translator:
         print("Carregando modelos...")
 
         # Nomes dos modelos da Hugging Face
-        self.model_en_pt_name = 'Helsinki-NLP/opus-mt-en-pt'   # Modelo para Inglês → Português
+        self.model_en_pt_name = 'Helsinki-NLP/opus-mt-tc-big-en-pt'   # Modelo para Inglês → Português
         self.model_pt_en_name = 'unicamp-dl/translation-pt-en-t5'   # Modelo para Português → Inglês
 
         # Carrega o modelo e tokenizer para tradução EN → PT
